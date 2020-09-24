@@ -7,11 +7,27 @@
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script>
 		axios.defaults.baseURL = 'http://localhost:4000';
+		axios.defaults.withCredentials = true;
+		// (async ()=> {
+		// 	const data = await axios.get('/api/users', {
+		// 		headers: {
+		// 			'X-Token': 'jilei'
+		// 		}
+		// 	});
+		// 	console.log(data);
+		// 	document.writeln(`Response : ${JSON.stringify(data.data)}`)
+		// })()
 		(async ()=> {
-			const data = await axios.get('/api/users');
+			const data = await axios.post('http://localhost:4000/api/users', {foo: 'bar'}, {
+				headers: {
+					'X-Token': 'jilei'
+				}
+			});
 			console.log(data);
 			document.writeln(`Response : ${JSON.stringify(data.data)}`)
+			console.log('cookie',data.headers.cookie)
 		})()
+
 	</script>
 </body>
 </html>
